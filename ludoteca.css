@@ -1,0 +1,106 @@
+/* ludoteca.css */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #1d118a;
+    color: white;
+    text-align: center;
+    display: flex;
+    
+    
+}
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    padding: 2%;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
+.navbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item label {
+    margin-right: 0.5rem;
+}
+
+.navbar-item select, .navbar-item button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+}
+
+.navbar-item select {
+    background-color: #fff;
+    color: #333;
+}
+
+.navbar-item button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar-item button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo del contenedor de registros */
+main {
+    padding: 1rem;
+}
+
+.registros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+/* Estilo de cada registro */
+.registro {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.registro:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-5px);
+}
+
+/* Colores específicos para los registros */
+.registro.green {
+    border-left: 5px solid #4CAF50;
+}
+
+.registro.amber {
+    border-left: 5px solid #FFC107;
+}
+
+.registro.red {
+    border-left: 5px solid #F44336;
+}
+

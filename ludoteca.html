@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludoteca - Registros</title>
+    <link rel="stylesheet" href="ludoteca.css">
+    <script src="ludoteca.js" defer></script>
+</head>
+<body>
+    <header>
+        <img src="cclimage.jpg" alt="Logo Complejo Gubernamental">
+        <h1>Registros de Ludoteca</h1>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="navbar-item">
+            <label for="status-filter">Filtrar por estado:</label>
+            <select id="status-filter" onchange="filterByStatus()">
+                <option value="all">Todos</option>
+                <option value="green">Verde</option>
+                <option value="amber">Ámbar</option>
+                <option value="red">Rojo</option>
+            </select>
+        </div>
+        <div class="navbar-item">
+            <button onclick="generateReport()">Generar Reporte</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="registros">
+            <!-- Example records -->
+            <div class="registro">Folio1234</div>
+            <div class="registro amber" onclick="openDetail('Folio5678')">Folio5678</div>
+            <div class="registro red" onclick="openDetail('Folio91011')">Folio91011</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro green" onclick="openDetail('Folio1213')">Folio1213</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+            <div class="registro" onclick="openDetail('Folio1234')">Folio1234</div>
+        </div>
+    </main>
+</body>
+</html>

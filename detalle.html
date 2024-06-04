@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Registro</title>
+    <link rel="stylesheet" href="detallesLudoteca.css">
+    <script src="ludoteca.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="flecha.png" alt="Regresar" onclick="goBack()" class="back-btn">
+        </div>
+        <div class="header-center">
+            <h1 id="folio-title">Folio1234</h1>
+        </div>
+    </header>
+    
+
+    <main class="detalle">
+        <div class="datos">
+            <div class="detalle-header">
+                <div class="detalle-info">
+                    <div><strong>Nombre del infante:</strong> Juan Pérez</div>
+                    <div><strong>Sexo:</strong> Masculino</div>
+                    <div><strong>Edad:</strong> 8 años</div>
+                </div>
+            </div>
+            <div class="detalle-responsable">
+                <div class="detalle-info">
+                    <div><strong>Nombre del responsable:</strong> María López</div>
+                    <div><strong>Parentesco:</strong> Madre</div>
+                    <div><strong>Área de visita:</strong> Trámites Administrativos</div>
+                    <div><strong>Teléfono:</strong> 1234567890</div>
+                    <div><strong>Teléfono de emergencia:</strong> 0987654321</div>
+                    <div><strong>Fecha y hora de entrada:</strong> 01/06/2024 10:00 AM</div>
+                    <div><strong>Fecha y hora de salida:</strong> 01/06/2024 01:00 PM</div>
+                    <div class="buttondiv">
+                        <button class="terminar-btn" onclick="terminarEstancia()">Terminar estancia</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fotosdiv">
+            <div class="imageninfante">
+                <img src="selfie.jpg" alt="Infante y responsable" onclick="openModal(this)">
+            </div>
+            <div class="ine">
+                <img src="inefrontal.jpg" alt="ID frontal" onclick="openModal(this)">
+            </div>
+            <div class="ine_back">
+                <img src="inetrasera.jpg" alt="ID trasero" onclick="openModal(this)">
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+</body>
+</html>
