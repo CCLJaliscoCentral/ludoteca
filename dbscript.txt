@@ -1,0 +1,93 @@
+create database ludoteca;
+
+
+create table registro(
+id int not null PRIMARY KEY AUTO_INCREMENT,
+nombre_infante varchar(50) not null,
+sexo_infante varchar(10) not null,
+edad_infante int not null,
+foto_infante_responsable varchar(200) not null,
+nombre_responsable varchar(50) not null,
+parentesco varchar(30) not null,
+area varchar(30) not null,
+numero_contacto varchar(15)not null,
+numero_contacto2 varchar(15) not null,
+identificacion_frontal varchar(200) not null,
+identificacion_trasera varchar(200) not null,
+fecha_resgistro date not null,
+hora_entrada time not null,
+hora_salida time,
+folio varchar(15),
+status boolean);
+            
+
+DELIMITER //
+
+CREATE PROCEDURE registrar(
+IN p_nombre_infante VARCHAR(50),
+    IN p_sexo_infante VARCHAR(10),
+    IN p_edad_infante INT,
+    IN p_foto_infante_responsable VARCHAR(200),
+    IN p_nombre_responsable VARCHAR(50),
+    IN p_parentesco VARCHAR(30),
+    IN p_area VARCHAR(15),
+    IN p_numero_contacto VARCHAR(15),
+    IN p_numero_contacto2 VARCHAR(15),
+    IN p_identificacion_frontal VARCHAR(200),
+    IN p_identificacion_trasera VARCHAR(200)
+)
+BEGIN
+INSERT INTO registro(
+	nombre_infante, sexo_infante, edad_infante, foto_infante_responsable,
+        nombre_responsable, parentesco, area, numero_contacto,
+        numero_contacto2, identificacion_frontal, identificacion_trasera,
+        fecha_registro, hora_entrada, status
+	)VALUES(
+	p_nombre_infante, p_sexo_infante, p_edad_infante, p_foto_infante_responsable,
+        p_nombre_responsable, p_parentesco, p_area, p_numero_contacto,
+        p_numero_contacto2, p_identificacion_frontal, p_identificacion_trasera,
+        CURDATE(), CURTIME(), TRUE
+	);
+	
+	SET @last_id = LAST_INSERT_ID();
+	SET @fecha_registro = (SELECT YEAR(fecha_registro) FROM registro WHERE id=@last_id);
+	SET @folio = CONCAT('folio',@fecha_registro,@last_id);
+
+	UPDATE registro SET folio = @folio WHERE id=@last_id;
+
+	SELECT folio FROM registro WHERE id=@last_id;
+END //
+
+
+
+CALL registrar("Juan Carlos","niño",12,"images/selfie.jpg","Bruno Gonzalez","Padre","Asesoria Juridica","334455980","3326716336","images/inefrontal.jpg","images/inetrasera.jpg");
+
+
+CREATE PROCEDURE consultarFolios()
+BEGIN
+SELECT id,folios FROM registro WHERE fecha_registro = CURDATE();
+END
+
+
+
+
+
+{
+    "nombre_infante": "Bruno Gonzalez",
+    "sexo_infante" : "niño",
+    "edad_infante": 12,
+    "foto_infante_responsable" :"images/selfie.jpg",
+    "nombre_responsable" : "Juan Carlos",
+    "parentesco" : "Padre",
+    "area" : "Asesoria Juridica",
+    "numero_contacto" : "334455980",
+    "numero_contacto2" : "3326716336",
+    "identificacion_frontal" : "images/inefrontal.jpg",
+    "identificacion_trasera" : "images/inetrasera.jpg"
+}
+
+
+
+
+	
+
