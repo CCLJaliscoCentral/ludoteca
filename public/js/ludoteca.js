@@ -1,7 +1,7 @@
 // scripts.js
 
 function openDetail(folio) {
-    window.location.href =`detalle.html?folio=${folio}`;
+    window.location.href =`/detalles`;
 }
 
 function getQueryParam(param) {
