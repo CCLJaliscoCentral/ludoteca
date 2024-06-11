@@ -14,12 +14,7 @@ function terminarEstancia() {
         try {
           const response = fetch(url, {
             method: 'PATCH'
-          });
-          if (!response.ok) {
-            throw new Error(`Error en la solicitud: ${response.status}`);
-          }
-          const result = response.json();
-          console.log('Respuesta:', result);   
+          }); 
           alert('Estancia actualizada exitosamente');
         } catch (error) {
           console.error('Error NO MMS:', error);
