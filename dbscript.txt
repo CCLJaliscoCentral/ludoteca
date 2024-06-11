@@ -1,5 +1,5 @@
 create database ludoteca;
-
+use ludoteca;
 
 create table registro(
 id int not null PRIMARY KEY AUTO_INCREMENT,
@@ -14,7 +14,7 @@ numero_contacto varchar(15)not null,
 numero_contacto2 varchar(15) not null,
 identificacion_frontal varchar(200) not null,
 identificacion_trasera varchar(200) not null,
-fecha_resgistro date not null,
+fecha_registro date not null,
 hora_entrada time not null,
 hora_salida time,
 folio varchar(15),
@@ -46,12 +46,12 @@ INSERT INTO registro(
 	p_nombre_infante, p_sexo_infante, p_edad_infante, p_foto_infante_responsable,
         p_nombre_responsable, p_parentesco, p_area, p_numero_contacto,
         p_numero_contacto2, p_identificacion_frontal, p_identificacion_trasera,
-        CURDATE(), CURTIME(), TRUE
+        CURDATE(), NOW(), TRUE
 	);
 	
 	SET @last_id = LAST_INSERT_ID();
 	SET @fecha_registro = (SELECT YEAR(fecha_registro) FROM registro WHERE id=@last_id);
-	SET @folio = CONCAT('folio',@fecha_registro,@last_id);
+	SET @folio = CONCAT('Ludoteca/',@fecha_registro,'/',@last_id);
 
 	UPDATE registro SET folio = @folio WHERE id=@last_id;
 
@@ -65,8 +65,20 @@ CALL registrar("Juan Carlos","niño",12,"images/selfie.jpg","Bruno Gonzalez","Pa
 
 CREATE PROCEDURE consultarFolios()
 BEGIN
-SELECT id,folios FROM registro WHERE fecha_registro = CURDATE();
-END
+    SELECT 
+        id,
+        folio,
+        hora_entrada,
+        TIMESTAMPDIFF(HOUR, hora_entrada, NOW()) AS horas_transcurridas,
+        TIMESTAMPDIFF(MINUTE, hora_entrada, NOW()) % 60 AS minutos_transcurridos,
+        TIMESTAMPDIFF(SECOND, hora_entrada, NOW()) % 60 AS segundos_transcurridos
+    FROM 
+        registro 
+    WHERE 
+        fecha_registro = CURDATE();
+END//
+
+DELIMITER ;
 
 
 

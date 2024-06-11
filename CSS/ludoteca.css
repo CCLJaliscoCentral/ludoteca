@@ -1,0 +1,139 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #ebb82e;
+    color: white;
+    text-align: center;
+    display: flex;
+    height: 100px;
+    
+    
+}
+header h1 {
+    margin: auto;
+    font-size: 2rem;
+    padding-top: 3rem;
+    padding-left: 5rem;
+    padding-bottom: 3rem;
+    
+}
+
+header img{
+    height: 100px;
+    width: 700px;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
+.navbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item label {
+    margin-right: 0.5rem;
+}
+
+.navbar-item select, .navbar-item button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+}
+
+.navbar-item select {
+    background-color: #fff;
+    color: #333;
+}
+
+.navbar-item button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar-item button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo del contenedor de registros */
+main {
+    padding: 1rem;
+    flex: 1;
+}
+
+.registros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+/* Estilo de cada registro */
+.registro {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.registro:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-5px);
+}
+
+/* Colores específicos para los registros */
+.registro.green {
+    border-left: 5px solid #4CAF50;
+}
+
+.registro.amber {
+    border-left: 5px solid #FFC107;
+}
+
+.registro.red {
+    border-left: 5px solid #F44336;
+}
+
+footer {
+    background-color: #0d1216;
+    display: flex;
+    color: white;
+    position: relative;
+    height: 50px;
+}
+
+footer p{
+    padding-left: 10rem;
+}
+
+footer img {
+    width: 30%;
+    height: 50px;
+}
