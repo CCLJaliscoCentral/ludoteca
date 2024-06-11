@@ -13,6 +13,7 @@ router.get('/detalles',(req,res) =>{
 });
 
 router.get('/consultarFolios', Controllers.getFolios);
-
+router.get('/verdetalles', Controllers.verDetalles);
+router.patch('/terminarEstancia', Controllers.terminarEstancia);
 
 module.exports = router;

@@ -21,7 +21,8 @@ function generateReport() {
 
 
 function openDetail(folio) {
-    window.location.href ='/detalles';
+    window.location.href =`/verdetalles?folio=${folio}`;
+    console.log(folio);
 }
 
 function getQueryParam(param) {
@@ -50,25 +51,27 @@ async function obtenerFolios() {
             throw new Error('Error al obtener los datos de la API');
         }
         const datos = await respuesta.json();
-        const container = document.getElementById('folios-container');
+        const container = document.getElementById('registros');
+        console.log(datos);
         datos.forEach(item => {
-            console.log(`id: ${item.id} folio: ${item.folio} tiempo: ${item.horas_transcurridas}:${item.minutos_transcurridos}:${item.segundos_transcurridos}`);
+            console.log(`id: ${item.id} folio: ${item.folio} status: ${item.status} tiempo: ${item.horas_transcurridas}:${item.minutos_transcurridos}:${item.segundos_transcurridos}`);
+
                 const div = document.createElement('div');
                 div.className = 'registro';
-                div.textContent = `Folio${item.folio}`;
-                div.setAttribute('onclick', `openDetail('Folio${item.folio}')`);
+                div.textContent = `${item.folio}`;
+                div.setAttribute('onclick', `openDetail('${item.folio}')`);
+                const totalHoras = item.horas_transcurridas;
+                
+                
 
-                // Calcular el tiempo total en horas
-                const totalHoras = item.horas_transcurridas
 
-                //if (item.status === false) {
-                   // div.classList.add('green');
-                //} else 
-                if (totalHoras >= 3) {
+                if (item.status == 0) {
+                    div.classList.add('green');
+                } else if (totalHoras >= 3) {
                     div.classList.add('red');
                 } else if (totalHoras >= 2) {
                     div.classList.add('amber');
-                }else if (totalHoras < 2)
+                }
 
                 container.appendChild(div);
             });

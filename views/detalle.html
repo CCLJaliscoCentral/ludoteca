@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Registro</title>
     <link rel="stylesheet" href="CSS/detallesLudoteca.css">
-    <script src="js/ludoteca.js" defer></script>
+    <script src="js/detalles.js" defer></script>
 </head>
 <body>
     <header>
         <div class="header-left">
             <img class="return" src="images/flecha.png" alt="Regresar" onclick="goBack()">
             <img class="ludoheader" src="images/ludoteca_header.png" alt="Ludoteca Header">
-            <h1 id="folio-title">Folio1234</h1>
+            <h1 id="folio-title" data-folio="{{folio}}">{{folio}}</h1>
         </div>
     </header>
     
@@ -20,36 +20,37 @@
         <div class="datos">
             <div class="detalle-header">
                 <div class="detalle-info">
-                    <div><strong>Nombre del infante:</strong> Juan Pérez</div>
-                    <div><strong>Sexo:</strong> Masculino</div>
-                    <div><strong>Edad:</strong> 8 años</div>
+                    <div><strong>Nombre del infante:</strong>{{infante}}</div>
+                    <div><strong>Sexo:</strong>{{sexo}}</div>
+                    <div><strong>Edad:</strong>{{edad}}</div>
                 </div>
             </div>
             <div class="detalle-responsable">
                 <div class="detalle-info">
-                    <div><strong>Nombre del responsable:</strong> María López</div>
-                    <div><strong>Parentesco:</strong> Madre</div>
-                    <div><strong>Área de visita:</strong> Trámites Administrativos</div>
-                    <div><strong>Teléfono:</strong> 1234567890</div>
-                    <div><strong>Teléfono de emergencia:</strong> 0987654321</div>
-                    <div><strong>Fecha y hora de entrada:</strong> 01/06/2024 10:00 AM</div>
-                    <div><strong>Fecha y hora de salida:</strong> 01/06/2024 01:00 PM</div>
+                    <div><strong>Nombre del responsable:</strong> {{tutor}}</div>
+                    <div><strong>Parentesco:</strong> {{parentesco}}</div>
+                    <div><strong>Área de visita:</strong> {{area}}</div>
+                    <div><strong>Teléfono:</strong> {{contacto1}}</div>
+                    <div><strong>Teléfono de emergencia:</strong> {{contacto2}}</div>
+                    <div><strong>Fecha y hora de entrada:</strong> {{entrada}}</div>
+                    <div><strong>Fecha y hora de salida:</strong> {{salida}}</div>
+                    <div><strong>Status</strong> {{status}}</div>
                     <div class="buttondiv">
                         <button class="terminar-btn" onclick="terminarEstancia()">Terminar estancia</button>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
         
         <div class="fotosdiv">
             <div class="imageninfante">
-                <img src="images/selfie.jpg" alt="Infante y responsable" onclick="openModal(this)">
+                <img src="{{img_infante}}" alt="Infante y responsable" onclick="openModal(this)">
             </div>
             <div class="ine">
-                <img src="images/inefrontal.jpg" alt="ID frontal" onclick="openModal(this)">
+                <img src="{{img_ine_delantera}}" alt="ID frontal" onclick="openModal(this)">
             </div>
             <div class="ine_back">
-                <img src="images/inetrasera.jpg" alt="ID trasero" onclick="openModal(this)">
+                <img src="{{img_ine_trasera}}" alt="ID trasero" onclick="openModal(this)">
             </div>
         </div>
     </main>
