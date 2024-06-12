@@ -15,5 +15,6 @@ router.get('/detalles',(req,res) =>{
 router.get('/consultarFolios', Controllers.getFolios);
 router.get('/verdetalles', Controllers.verDetalles);
 router.patch('/terminarEstancia', Controllers.terminarEstancia);
+router.get('/generarReporte', Controllers.generarReporte);
 
 module.exports = router;

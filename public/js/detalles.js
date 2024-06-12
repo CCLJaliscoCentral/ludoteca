@@ -1,6 +1,8 @@
 
 
 
+/////////////////////////////////////////////////////////////////////
+
 function goBack() {
     window.history.back();
 }
@@ -16,6 +18,7 @@ function terminarEstancia() {
             method: 'PATCH'
           }); 
           alert('Estancia actualizada exitosamente');
+          location.reload();
         } catch (error) {
           console.error('Error NO MMS:', error);
           alert('Hubo un error al terminar la estancia');
@@ -78,9 +81,10 @@ async function obtenerDetalles(folio) {
             });
     } catch (error) {
         console.error('Ocurrió un error: ', error);
-        // Aquí podrías mostrar un mensaje de error al usuario
+
     }
 }
+
 
 
 
