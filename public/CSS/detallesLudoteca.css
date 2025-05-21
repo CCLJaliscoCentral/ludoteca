@@ -15,11 +15,7 @@ header {
     
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
+
 
 
 
@@ -190,10 +186,16 @@ main.detalle {
         height: fit-content;
     }
 
-    header {
-    max-width: 1200px;
-    
-    }   
+     header {
+    flex-direction: column !important;
+    align-items: flex-start;
+    }
+
+    .ludoheader{
+        max-width: 100%;
+    }
+
+  
 
     #folio-title, header h1 {
         width: 100%;
