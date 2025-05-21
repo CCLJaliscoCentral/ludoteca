@@ -1,137 +1,228 @@
+/* ============================
+   VARIABLES Y TIPOGRAFÍA
+============================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --color-primary: #1e2a38;
+  --color-secondary: #2c3e50;
+  --color-accent: #e0e7ef;
+  --color-success: #28a745;
+  --color-warning: #f0ad4e;
+  --color-danger: #dc3545;
+  --color-white: #ffffff;
+  --color-light: #f8f9fa;
+  --color-text: #343a40;
+
+  --radius: 0.75rem;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --font-main: 'Inter', sans-serif;
+}
+
+/* ============================
+   ESTILOS BASE
+============================= */
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-}
-.wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-main);
+  background-color: var(--color-light);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
 }
 
-/* Estilo del encabezado */
+
 header {
-    background-color: #ebb82e;
-    color: white;
-    text-align: center;
-    display: flex;
-    height: 100px;
-    
-    
+  background-color: #203578;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
 }
+
 header h2 {
-    margin: auto;
-    font-size: 2rem;
-    
-    
+  font-size: 1.8rem;
+  margin-right: 50px;
 }
 
-header img{
-    height: 100px;
-    width: 700px;
+header img {
+  height: auto;
+  width: 50%;
 }
 
-/* Barra de navegación */
+/* ============================
+   NAVBAR
+============================= */
 .navbar {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    align-items: center;
+  background-color: var(--color-white);
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .navbar-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .navbar-item label {
-    margin-right: 0.5rem;
+  font-weight: 600;
 }
 
-.navbar-item select, .navbar-item button {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: none;
+select,
+button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
 }
 
-.navbar-item select {
-    background-color: #fff;
-    color: #333;
+select {
+  background-color: var(--color-light);
+  color: var(--color-text);
 }
 
-.navbar-item button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
+button {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
 }
 
-.navbar-item button:hover {
-    background-color: #45a049;
+button:hover {
+  background-color: var(--color-primary);
 }
 
-/* Estilo del contenedor de registros */
+/* ============================
+   CONTENIDO
+============================= */
 main {
-    padding: 1rem;
-    flex: 1;
+  padding: 2rem;
+  flex: 1;
 }
 
 .registros {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
-/* Estilo de cada registro */
 .registro {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 .registro:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-5px);
+  transform: scale(1.02);
 }
 
-/* Colores específicos para los registros */
-.registro.green {
-    border-left: 5px solid #4CAF50;
+.green {
+  border-left: 5px solid #4caf50;
 }
 
-.registro.amber {
-    border-left: 5px solid #FFC107;
+.amber {
+  border-left: 5px solid #ffc107;
 }
 
-.registro.red {
-    border-left: 5px solid #F44336;
+.red {
+  border-left: 5px solid #f44336;
 }
 
+
+/* ============================
+   TARJETAS TIPO CARD
+============================= */
+.card-folio {
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+
+.card-folio:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-folio h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.card-folio p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* Estados con color */
+.card-folio.green {
+  border-left-color: var(--color-success);
+}
+
+.card-folio.amber {
+  border-left-color: var(--color-warning);
+}
+
+.card-folio.red {
+  border-left-color: var(--color-danger);
+}
+
+/* ============================
+   PIE DE PÁGINA
+============================= */
 footer {
-    background-color: #0d1216;
-    display: flex;
-    color: white;
-    position: relative;
-}
-
-footer p{
-    padding: 1rem;
-    padding-left: 10rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 footer img {
-    width: 30%;
-    height: 80px;
+  max-height: 40px;
+}
+
+/* ============================
+   RESPONSIVE
+============================= */
+@media (max-width: 768px) {
+  header,
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar-item {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .registros {
+    grid-template-columns: 1fr;
+  }
 }

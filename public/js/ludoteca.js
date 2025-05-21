@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
 async function obtenerFolios() {
     try {
         const respuesta = await fetch('/consultarFolios');
@@ -129,34 +128,36 @@ async function obtenerFolios() {
             throw new Error('Error al obtener los datos de la API');
         }
         const datos = await respuesta.json();
+        
         const container = document.getElementById('registros');
         container.innerHTML = '';
-        console.log(datos);
+
         datos.forEach(item => {
-            console.log(`id: ${item.id} folio: ${item.folio} status: ${item.status} tiempo: ${item.horas_transcurridas}:${item.minutos_transcurridos}:${item.segundos_transcurridos}`);
+            const div = document.createElement('div');
+            div.className = 'card-folio';
+            div.setAttribute('onclick', `openDetail('${item.folio}')`);
 
-                const div = document.createElement('div');
-                div.className = 'registro';
-                div.textContent = `${item.folio}`;
-                div.setAttribute('onclick', `openDetail('${item.folio}')`);
-                const totalHoras = item.horas_transcurridas;
-                
-                
+            // Agrega clases por estado
+            const horas = item.horas_transcurridas;
+            if (item.status == 0) {
+                div.classList.add('green');
+            } else if (horas >= 3) {
+                div.classList.add('red');
+            } else if (horas >= 2) {
+                div.classList.add('amber');
+            }
 
+            div.innerHTML = `
+                <h4>${item.folio}</h4>
+                <img src="${item.imagen_perfil || 'images/usuario.png'} " alt="Foto de perfil" style="width: 100px; height: auto; border-radius: 50%;">
+                <p><strong>Hora de entrada:</strong> ${new Date(item.hora_entrada).toLocaleTimeString()}</p>
+                <p><strong>Tiempo transcurrido:</strong> ${item.horas_transcurridas}h ${item.minutos_transcurridos}m ${item.segundos_transcurridos}s</p>
+            `;
 
-                if (item.status == 0) {
-                    div.classList.add('green');
-                } else if (totalHoras >= 3) {
-                    div.classList.add('red');
-                } else if (totalHoras >= 2) {
-                    div.classList.add('amber');
-                }
+            container.appendChild(div);
+        });
 
-                container.appendChild(div);
-            });
     } catch (error) {
         console.error('Ocurrió un error: ', error);
-        // Aquí podrías mostrar un mensaje de error al usuario
     }
 }
-

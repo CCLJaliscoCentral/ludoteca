@@ -108,9 +108,27 @@ main.detalle {
 
 .fotosdiv {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: row; 
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
     flex: 1;
+    scrollbar-width: thin; 
+    scrollbar-color: #ccc transparent;
+    height: 100%;
+}
+
+.fotosdiv::-webkit-scrollbar {
+    height: 8px;
+}
+
+.fotosdiv::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.fotosdiv::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
 }
 
 .fotosdiv div {
@@ -118,7 +136,7 @@ main.detalle {
 }
 
 .fotosdiv img {
-    max-width: 100%;
+    width: 400px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;

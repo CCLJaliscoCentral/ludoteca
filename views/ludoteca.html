@@ -6,41 +6,36 @@
     <title>Ludoteca - Registros</title>
     <link rel="stylesheet" href="CSS/ludoteca.css">
     <script src="js/ludoteca.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
 </head>
 <body>
     <header>
         <img src="images/ludoteca_header.png" alt="Logo Complejo Gubernamental">
-        <h2>Registros de Ludoteca</h2>
+        <img src="images/ludoteca_footer.png" alt="Footer Ludoteca">
+        
     </header>
 
     <!-- Barra de navegación -->
     <nav class="navbar">
         <div class="navbar-item">
-            <label for="status-filter">Filtrar por estado:</label>
-            <select id="status-filter" onchange="filterByStatus()">
-                <option value="all">Todos</option>
-                <option value="green">Verde</option>
-                <option value="amber">Ámbar</option>
-                <option value="red">Rojo</option>
-            </select>
-        </div>
-        <div class="navbar-item">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-            <button id="generarReporteButton" >Generar Reporte</button>
+            <button id="generarReporteButton">Generar Reporte</button>
         </div>
     </nav>
 
     <main>
         <div class="registros" id="registros">
-            <!-- Example records -->
-            
-            
-            
+            <!-- Aquí se mostrarán los registros dinámicamente -->
         </div>
     </main>
+
     <footer>
-        <img src="images/ludoteca_footer.png" alt="footer ludoteca">
-        <p>&copy; 2024 Centro de Conciliacion Laboral del Estado de Jalisco. Todos los derechos reservados.</p>
+        
+        <p>&copy; <span id="current-year"></span> Centro de Conciliación Laboral del Estado de Jalisco. Todos los derechos reservados.</p>
     </footer>
 </body>
+
+<script>
+  document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
 </html>
