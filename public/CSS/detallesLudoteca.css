@@ -182,3 +182,72 @@ main.detalle {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+@media (max-width: 768px) and (min-width: 100px) {
+
+
+    #folio-title, header h1 {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .return {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    main.detalle {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        width: 1000px;
+    }
+
+    .datos, .fotosdiv {
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .detalle-info strong {
+        width: 100%;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .fotosdiv {
+        flex-direction: column;
+        overflow-x: auto;
+        gap: 1rem;
+    }
+
+    .fotosdiv div {
+        min-width: 250px;
+        flex: 0 0 auto;
+    }
+
+    .fotosdiv img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .terminar-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .modal-content {
+        max-width: 95%;
+    }
+
+    .close {
+        font-size: 32px;
+        top: 10px;
+        right: 20px;
+    }
+}
