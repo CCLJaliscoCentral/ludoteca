@@ -12,11 +12,9 @@ header {
     align-items: center;
     background-color: #333;
     color: white;
+    height: auto;
     
 }
-
-
-
 
 
 #folio-title {
@@ -26,13 +24,14 @@ header {
     width: 50%;
     
 }
-header h1{
-    width: 50%;
+
+header h2{
+    width: 70%;
 }
 
 .ludoheader {
-    width: auto; /* Ajusta el tamaño según sea necesario */
-    height: auto;
+    width: 70%; /* Ajusta el tamaño según sea necesario */
+    height: 14vh;
     
 }
 
@@ -273,7 +272,7 @@ main.detalle {
 
 
 
-@media (max-width: 2048px) and (min-width: 769px) {
+@media (max-width: 1800px) and (min-width: 769px) {
 
     body{
         height: fit-content;
@@ -286,7 +285,7 @@ main.detalle {
     }
 
     #folio-title, header h1 {
-        width: 80%;
+        width: 100%;
         font-size: 1rem;
         
     }

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Ludoteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .main {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 700px;
+            width: 100%;
+        }
+        .foto {
+            flex: 1;
+            background: #4b6fe4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .foto img {
+            max-width: 90%;
+            height: auto;
+        }
+        .form-container {
+            flex: 1;
+            padding: 40px;
+            
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+        #label-registro, #label-login{
+            background-color: rgb(10, 109, 175); 
+            border-radius: 5px; 
+            color: aliceblue; 
+            width: fit-content; 
+            margin-top: 20px; 
+            padding: 5px;
+        }
+
+        #mensaje{
+            position: absolute;
+            background-color: rgb(255, 249, 249);
+            padding: 15px;
+            border-radius: 3px;
+            left: 50%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        
+        <div class="foto">
+            <img src="/images/ludoteca_logo.png" alt="Ludoteca">
+        </div>
+        <div id="mensaje" ></div>
+        <div class="form-container" id="div-login">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Entrar</button>
+                <label id="label-registro">Registrate</label>
+            </form>
+        </div>
+
+        <div class="form-container" id="div-registro" style="display: none;">
+            <h2>Registrar</h2>
+            <form id="registro-form">
+                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" style="background-color: #185e06;">Registrar</button>
+                <label id="label-login">Inciar Sesión</label>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const labelR = document.getElementById('label-registro');
+        const labelL = document.getElementById('label-login');
+        labelR.addEventListener('click', mostrarRegistro);
+        labelL.addEventListener('click', mostrarRegistro);
+
+    });
+
+    function mostrarRegistro(){
+        const divR = document.getElementById('div-registro');
+        const divL = document.getElementById('div-login');
+
+        if (divR.style.display === 'none' || divR.style.display === ''){
+            divL.style.display = 'none';
+            divR.style.display = 'block';
+        }else if (divL.style.display === 'none' || divL.style.display === ''){
+            divR.style.display = 'none';
+            divL.style.display = 'block';
+        }
+
+        
+    }
+</script>
+
+<script>
+document.getElementById('registro-form').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Evita la recarga de la página
+
+  const form = event.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  const mensajeDiv = document.getElementById('mensaje');
+
+  try {
+    const response = await fetch('/registrar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const mensaje = await response.json();
+      mensajeDiv.textContent ='';
+      mensajeDiv.style.color = 'green';
+      mensajeDiv.textContent = mensaje.message;
+      mensajeDiv.style.display = 'block';
+      form.reset(); // Limpia el formulario
+    } else {
+      const json = await response.json();
+      mensajeDiv.textContent ='';
+      mensajeDiv.style.color = 'red';
+      mensajeDiv.textContent = json.message || 'Error desconocido.';
+      mensajeDiv.style.display = 'block';
+    }
+  } catch (error) {
+    console.error('Error al registrar:', error);
+    mensajeDiv.style.color = 'red';
+    mensajeDiv.textContent = 'Error de conexión con el servidor.';
+    mensajeDiv.style.display = 'block';
+  }
+});
+</script>
+
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const mensajeDiv = document.getElementById('mensaje');
+
+  try {
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', 
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    if (response.ok) {
+      localStorage.setItem('token', json.token);
+      window.location.href = '/ludoteca'; // cambia según tu ruta real
+    } else {
+      mensajeDiv.textContent ='';
+      mensajeDiv.textContent = json.message || 'Credenciales incorrectas.';
+    }
+
+  } catch (error) {
+    console.error('Error en login:', error);
+    mensajeDiv.textContent = 'Error al conectar con el servidor.';
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('error') === 'acceso_denegado') {
+    const divE = document.getElementById('mensaje');
+    if (divE) {
+      divE.textContent = 'Acceso denegado.';
+      divE.style.color = 'red';
+      divE.style.display = 'block';
+    } else {
+      console.warn('No se encontró el div con id "mensaje"');
+    }
+  }
+});
+</script>
+
+
+</html>

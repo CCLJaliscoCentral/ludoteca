@@ -101,6 +101,13 @@ const generarReporte = async (req ,res) =>{
 }
 
 
+const iniciarSesion = async (req, res) =>{
+  try{
+    
+  }catch(error){
+
+  }
+}
 
 module.exports = {
   getFolios,
